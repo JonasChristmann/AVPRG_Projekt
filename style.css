@@ -22,8 +22,13 @@ body, html {
 
 #sidebar {
     display: flex;
-    flex: 0.2;
+    flex: 0;
     background-color: var(--mainColor);
+    transition:  0.4s;
+}
+
+.change #sidebar {
+    flex: 0;
 }
 
 #menuButton {
@@ -42,11 +47,11 @@ body, html {
 }
 
 .change #bar1{
-    transform: translate(0, 11px) rotate(45deg);
+    transform: translate(0, 12px) rotate(45deg);
 }
 
 .change #bar2{
-    transform: translate(0, 11px) rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 
