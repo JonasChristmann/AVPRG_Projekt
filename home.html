@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title></title>
   <link href="style.css" rel="stylesheet" />
+  <script type ="text/javascript" src = "https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+  <script type="text/javascript" src ="camera.js"></script>
 </head>
 <body>
 
@@ -22,6 +24,9 @@
         </div>
 
     </div>
+
+    <video id = "webCam" autoplay playsinlne width="800" height="600"> </video>
+    <canvas id = "canvas"></canvas>
 
     <script>
         function openMenu(x) {
