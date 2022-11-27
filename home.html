@@ -13,7 +13,7 @@
 
         </div>
 
-        <div id="menuButton" onclick="openMenu(this)">
+        <div id="menuButton" onclick="Menu(this)">
             <div class="bar" id="bar1"></div>
             <div class="bar" id="bar2"></div>
         </div>
@@ -24,9 +24,29 @@
     </div>
 
     <script>
+
+        var menuOpen = true;
+
+        function Menu(x) {
+            if  (menuOpen) {
+                closeMenu(x);
+            } else {
+                openMenu(x);
+            }
+
+            menuOpen = !menuOpen;
+        }
+
         function openMenu(x) {
             x.classList.toggle("change");
+            document.querySelector("#sidebar").style.flex = 0;
         }
+
+        function closeMenu(x) {
+            x.classList.toggle("change");
+            document.querySelector("#sidebar").style.flex = 0.2;
+        }
+        
     </script>
 </body>
 </html>
