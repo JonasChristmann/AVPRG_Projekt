@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <link href="style.css" rel="stylesheet" />
 
-  
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="style.css" rel="stylesheet" />
+
+
 
 </head>
+
 <body>
 
     <div id="container">
-        
+
         <div id="sidebar">
 
         </div>
@@ -23,19 +25,23 @@
 
         <div id="contentWrapper">
             <h2 id="segmentCaption"></h2>
-            <video width="0" height="0" id="webCam" autoplay playsinlne > </video>
+            <video width="0" height="0" id="webCam" autoplay muted playsinlne>
+                <source src="Micro-dance_2_.mp4" type="video/mp4">
+            </video>
             <canvas id="canvas" width="1280" height="720"></canvas>
+            <canvas id="canvas2" width="1280" height="720"></canvas>
         </div>
 
     </div>
 
-    
+
     <script>
+
 
         var menuOpen = true;
 
         function Menu(x) {
-            if  (menuOpen) {
+            if (menuOpen) {
                 closeMenu(x);
             } else {
                 openMenu(x);
@@ -46,7 +52,7 @@
 
         function openMenu(x) {
             x.classList.toggle("change");
-            document.querySelector("#sidebar").style.width= 0;
+            document.querySelector("#sidebar").style.width = 0;
         }
 
         function closeMenu(x) {
@@ -54,11 +60,17 @@
             document.querySelector("#sidebar").style.width = "350px";
         }
 
-    </script>
 
-  <script type="text/javascript" src ="segments.js"></script>
-  <!-- <script type ="text/javascript" src = "https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
-  <script type="text/javascript" src ="camera.js"></script> -->
+
+
+
+    </script>
+   <script type="text/javascript" src ="camera.js"></script>
+
+    <script type="text/javascript" src="segments.js"></script>
+    <!-- <script type ="text/javascript" src = "https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+   -->
 
 </body>
+
 </html>
