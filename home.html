@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <title></title>
   <link href="style.css" rel="stylesheet" />
-  <script type ="text/javascript" src = "https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
-  <script type="text/javascript" src ="camera.js"></script>
+
+  
+
 </head>
 <body>
 
@@ -21,13 +22,14 @@
         </div>
 
         <div id="contentWrapper">
+            <h2 id="segmentCaption"></h2>
+            <video width="0" height="0" id="webCam" autoplay playsinlne > </video>
+            <canvas id="canvas" width="1280" height="720"></canvas>
         </div>
 
     </div>
 
-    <video id = "webCam" autoplay playsinlne width="800" height="600"> </video>
-    <canvas id = "canvas"></canvas>
-
+    
     <script>
 
         var menuOpen = true;
@@ -44,14 +46,19 @@
 
         function openMenu(x) {
             x.classList.toggle("change");
-            document.querySelector("#sidebar").style.flex = 0;
+            document.querySelector("#sidebar").style.width= 0;
         }
 
         function closeMenu(x) {
             x.classList.toggle("change");
-            document.querySelector("#sidebar").style.flex = 0.2;
+            document.querySelector("#sidebar").style.width = "350px";
         }
-        
+
     </script>
+
+  <script type="text/javascript" src ="segments.js"></script>
+  <!-- <script type ="text/javascript" src = "https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+  <script type="text/javascript" src ="camera.js"></script> -->
+
 </body>
 </html>
