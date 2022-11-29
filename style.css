@@ -17,6 +17,7 @@ body, html {
     --mainFont: 'League Spartan', sans-serif;
   }
 
+
 h2 {
     font-family: var(--mainFont);
     font-style: 'medium';
@@ -34,15 +35,74 @@ h2 {
 
 #sidebar {
     position: fixed;
+    z-index: 10;
     height: 100%;
     width: 0;
     background-color: var(--mainColor);
     transition:  0.4s;
 }
 
+#navWrapper{
+    display: flex;
+    margin-top: 10%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 90%;
+    width: 100%;
+    transition: 0.4s;
+
+}
+
+
+.navEntry {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: left;
+    margin-left: 3%;
+    opacity: 0;
+    width: 0;
+    width: 80%;
+    flex: 1;
+    transition: 0.2s;
+}
+
+
+select {
+    appearance: none;
+    cursor: pointer;
+    outline: 0;
+    font-family: var(--mainFont);
+    font-weight: 100;
+    font-size: 20px;
+    color: var(--accentColor);
+    background-color: var(--mainColor);
+    border-radius: 5px;
+    border-width: 4px ;
+    border-color: var(--accentColor);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background: url(./images/expand_more.svg) no-repeat right transparent;
+    background-position: top 50% right 3px ;
+}
+
+option {
+    background: var(--mainColor);
+}
+
+
+h3 {
+    font-family: var(--mainFont);
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0;
+    color: var(--accentColor);
+}
+
 #menuButton {
     position: absolute;
-    z-index: 1;
+    z-index: 11;
     width: fit-content;
     height: fit-content;
     cursor: pointer;

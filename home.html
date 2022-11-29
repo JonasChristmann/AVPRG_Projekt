@@ -16,6 +16,70 @@
 
         <div id="sidebar">
 
+            <div id="navWrapper">
+
+                <div class="navEntry" id="drumSetsNav">
+                    <h3>Drumsets:</h3>
+                        <select>
+                            <option>Classic</option>
+                            <option>Jazz</option>
+                            <option>Synth</option>
+                        </select>
+                </div>
+                <div class="navEntry" id = "cymbalNav">
+                    <h3>Cymbal:</h3>
+                        <select>
+                            <option>Classic</option>
+                            <option>Jazz</option>
+                            <option>Synth</option>
+                        </select>
+                </div>
+                <div class="navEntry" id = "floorTomNav">
+                    <h3>Floor Tom:</h3>
+                        <select>
+                            <option>Classic</option>
+                            <option>Jazz</option>
+                            <option>Synth</option>
+                        </select>
+                </div>
+                <div class="navEntry" id = "hihatNav">
+                    <h3>Hi-Hat:</h3>
+                        <select>
+                            <option>Classic</option>
+                            <option>Jazz</option>
+                            <option>Synth</option>
+                        </select>
+                </div>
+                <div class="navEntry" id = "kickNav">
+                    <h3>Kick:</h3>
+                        <select>
+                            <option>Classic</option>
+                            <option>Jazz</option>
+                            <option>Synth</option>
+                        </select>
+                </div>
+                <div class="navEntry" id = "snare">
+                    <h3>Snare:</h3>
+                        <select>
+                            <option>Classic</option>
+                            <option>Jazz</option>
+                            <option>Synth</option>
+                        </select>
+                </div>
+                <div class="navEntry" id = "toms">
+                    <h3>Toms:</h3>
+                        <select>
+                            <option>Classic</option>
+                            <option>Jazz</option>
+                            <option>Synth</option>
+                        </select>
+                </div>
+            </div>
+
+
+
+
+
         </div>
 
         <div id="menuButton" onclick="Menu(this)">
@@ -24,12 +88,16 @@
         </div>
 
         <div id="contentWrapper">
+
             <h2 id="segmentCaption"></h2>
+
             <video width="0" height="0" id="webCam" autoplay muted playsinlne>
                 <source src="Micro-dance_2_.mp4" type="video/mp4">
             </video>
+
             <canvas id="canvas" width="1280" height="720"></canvas>
             <canvas id="canvas2" width="1280" height="720"></canvas>
+
         </div>
 
     </div>
@@ -53,11 +121,23 @@
         function openMenu(x) {
             x.classList.toggle("change");
             document.querySelector("#sidebar").style.width = 0;
+
+            document.querySelector('#navWrapper').style.width = 0;
+
+            document.querySelectorAll('.navEntry').forEach((item)=>{
+                // item.style.display = 'none';
+                item.style.opacity = 0
+            });
         }
 
         function closeMenu(x) {
             x.classList.toggle("change");
             document.querySelector("#sidebar").style.width = "350px";
+            document.querySelector('#navWrapper').style.width = '100%';
+            document.querySelectorAll('.navEntry').forEach((item)=>{
+                // item.style.display = 'inline-block';
+                item.style.opacity = 1.0;
+            });
         }
 
 
