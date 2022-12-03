@@ -12,6 +12,41 @@
 
 <body>
 
+    <div class="webcam-start-stop">
+        <a href="#!" class="btn-start" onclick="start()">Start</a>
+        <a href="#!" class="btn-stop" onclick="StopWebCam()">Stop</a>
+    </div>
+
+
+    <script>
+        var StopWebCam = function () {
+            var stream = video.srcObject;
+            var tracks = stream.getTracks();
+
+            for (var i = 0; i < tracks.length; i++) {
+                var track = tracks[i];
+                track.stop();
+            }
+            video.srcObject = null;
+        }
+
+        var start = function () {
+            var video = document.getElementById("video"),
+                vendorURL = window.URL || window.webkitURL;
+
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }
+        $(function () { start(); });
+    </script>
+
+
     <div id="container">
 
         <div id="sidebar">
@@ -90,10 +125,6 @@
         <div id="contentWrapper">
 
             <h2 id="segmentCaption"></h2>
-
-            <video width="0" height="0" id="webCam" autoplay muted playsinlne>
-                <source src="Micro-dance_2_.mp4" type="video/mp4">
-            </video>
 
             <canvas id="canvas" width="1280" height="720"></canvas>
             <canvas id="canvas2" width="1280" height="720"></canvas>
