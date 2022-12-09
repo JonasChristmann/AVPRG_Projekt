@@ -153,6 +153,7 @@ h3 {
     border-radius: 5px;
     border-width: 5px;
     background: grey;
+    transform: scaleX(-1);
 }
 
 .webcam-start-stop {

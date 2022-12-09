@@ -18,35 +18,6 @@
     </div>
 
 
-    <script>
-        var StopWebCam = function () {
-            var stream = video.srcObject;
-            var tracks = stream.getTracks();
-
-            for (var i = 0; i < tracks.length; i++) {
-                var track = tracks[i];
-                track.stop();
-            }
-            video.srcObject = null;
-        }
-
-        var start = function () {
-            var video = document.getElementById("video"),
-                vendorURL = window.URL || window.webkitURL;
-
-            if (navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia({ video: true })
-                    .then(function (stream) {
-                        video.srcObject = stream;
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-            }
-        }
-        $(function () { start(); });
-    </script>
-
-
     <div id="container">
 
         <div id="sidebar">
@@ -55,59 +26,59 @@
 
                 <div class="navEntry" id="drumSetsNav">
                     <h3>Drumsets:</h3>
-                        <select>
-                            <option>Classic</option>
-                            <option>Jazz</option>
-                            <option>Synth</option>
-                        </select>
+                    <select>
+                        <option>Classic</option>
+                        <option>Jazz</option>
+                        <option>Synth</option>
+                    </select>
                 </div>
-                <div class="navEntry" id = "cymbalNav">
+                <div class="navEntry" id="cymbalNav">
                     <h3>Cymbal:</h3>
-                        <select>
-                            <option>Classic</option>
-                            <option>Jazz</option>
-                            <option>Synth</option>
-                        </select>
+                    <select>
+                        <option>Classic</option>
+                        <option>Jazz</option>
+                        <option>Synth</option>
+                    </select>
                 </div>
-                <div class="navEntry" id = "floorTomNav">
+                <div class="navEntry" id="floorTomNav">
                     <h3>Floor Tom:</h3>
-                        <select>
-                            <option>Classic</option>
-                            <option>Jazz</option>
-                            <option>Synth</option>
-                        </select>
+                    <select>
+                        <option>Classic</option>
+                        <option>Jazz</option>
+                        <option>Synth</option>
+                    </select>
                 </div>
-                <div class="navEntry" id = "hihatNav">
+                <div class="navEntry" id="hihatNav">
                     <h3>Hi-Hat:</h3>
-                        <select>
-                            <option>Classic</option>
-                            <option>Jazz</option>
-                            <option>Synth</option>
-                        </select>
+                    <select>
+                        <option>Classic</option>
+                        <option>Jazz</option>
+                        <option>Synth</option>
+                    </select>
                 </div>
-                <div class="navEntry" id = "kickNav">
+                <div class="navEntry" id="kickNav">
                     <h3>Kick:</h3>
-                        <select>
-                            <option>Classic</option>
-                            <option>Jazz</option>
-                            <option>Synth</option>
-                        </select>
+                    <select>
+                        <option>Classic</option>
+                        <option>Jazz</option>
+                        <option>Synth</option>
+                    </select>
                 </div>
-                <div class="navEntry" id = "snare">
+                <div class="navEntry" id="snare">
                     <h3>Snare:</h3>
-                        <select>
-                            <option>Classic</option>
-                            <option>Jazz</option>
-                            <option>Synth</option>
-                        </select>
+                    <select>
+                        <option>Classic</option>
+                        <option>Jazz</option>
+                        <option>Synth</option>
+                    </select>
                 </div>
-                <div class="navEntry" id = "toms">
+                <div class="navEntry" id="toms">
                     <h3>Toms:</h3>
-                        <select>
-                            <option>Classic</option>
-                            <option>Jazz</option>
-                            <option>Synth</option>
-                        </select>
+                    <select>
+                        <option>Classic</option>
+                        <option>Jazz</option>
+                        <option>Synth</option>
+                    </select>
                 </div>
             </div>
 
@@ -125,7 +96,9 @@
         <div id="contentWrapper">
 
             <h2 id="segmentCaption"></h2>
-
+            <video id="video" width="auto" height="auto" autoplay>
+                <source />
+            </video>
             <canvas id="canvas" width="1280" height="720"></canvas>
             <canvas id="canvas2" width="1280" height="720"></canvas>
 
@@ -135,9 +108,46 @@
 
 
     <script>
-
-
         var menuOpen = true;
+
+        var StopWebCam = function () {
+            var stream = video.srcObject;
+            var tracks = stream.getTracks();
+
+            for (var i = 0; i < tracks.length; i++) {
+                var track = tracks[i];
+                track.stop();
+            }
+            video.srcObject = null;
+        }
+
+        var hdConstraints = {
+            video: {
+                mandatory: {
+                    minWidth: 1280,
+                    minHeight: 720
+                }
+            }
+        };
+
+        var start = function () {
+            var video = document.getElementById("video"),
+                vendorURL = window.URL || window.webkitURL;
+
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia(hdConstraints)
+                    .then(function (stream) {
+                        video.srcObject = stream;
+
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }
+        $(function () { start(); });
+
+
+
 
         function Menu(x) {
             if (menuOpen) {
@@ -155,7 +165,7 @@
 
             document.querySelector('#navWrapper').style.width = 0;
 
-            document.querySelectorAll('.navEntry').forEach((item)=>{
+            document.querySelectorAll('.navEntry').forEach((item) => {
                 // item.style.display = 'none';
                 item.style.opacity = 0
             });
@@ -165,7 +175,7 @@
             x.classList.toggle("change");
             document.querySelector("#sidebar").style.width = "350px";
             document.querySelector('#navWrapper').style.width = '100%';
-            document.querySelectorAll('.navEntry').forEach((item)=>{
+            document.querySelectorAll('.navEntry').forEach((item) => {
                 // item.style.display = 'inline-block';
                 item.style.opacity = 1.0;
             });
@@ -176,9 +186,12 @@
 
 
     </script>
-   <script type="text/javascript" src ="camera.js"></script>
+    <script type="application/javascript" src="websocket_client.js"></script>
+
+    <script type="text/javascript" src="camera.js"></script>
 
     <script type="text/javascript" src="segments.js"></script>
+    
     <!-- <script type ="text/javascript" src = "https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
    -->
 

@@ -1,4 +1,4 @@
-/*const canvas2 = document.querySelector("#canvas2");
+const canvas2 = document.querySelector("#canvas2");
 const ctx2 = canvas2.getContext('2d');
 const video = document.querySelector("video");
 
@@ -8,5 +8,4 @@ video.addEventListener("play", () => {
         requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
-});*/
-
+});

@@ -1,0 +1,23 @@
+{
+  "name": "avprg_projekt",
+  "version": "1.0.0",
+  "description": "DrumAir, playing Drums without drums",
+  "main": "camera.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonasChristmann/AVPRG_Projekt.git"
+  },
+  "author": "Jonas Christmann, Tobias Behn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonasChristmann/AVPRG_Projekt/issues"
+  },
+  "homepage": "https://github.com/JonasChristmann/AVPRG_Projekt#readme",
+  "dependencies": {
+    "webcam-easy": "^1.0.5"
+  }
+}

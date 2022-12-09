@@ -1,4 +1,5 @@
 
+
 function getCursorPosition(canvas, event) {
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -88,7 +89,10 @@ canvas.addEventListener('mousedown', (e)=>{
         console.log(coordinates);
     }
 
+
 });
+
+
 
 
 function segmentCaption(i){
@@ -122,7 +126,9 @@ function segmentCaption(i){
             text.innerHTML = "Define the Cymbal section";
             break;
         case 7: 
-            text.innerHTML = "All sections Set, ready to play "
+            text.innerHTML = "All sections Set, ready to play ";
+            sendPoints(coordinates);
+
             break;
 
         default:
