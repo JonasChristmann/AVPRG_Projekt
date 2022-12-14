@@ -9,3 +9,8 @@ video.addEventListener("play", () => {
     }
     requestAnimationFrame(step);
 });
+
+
+const devices = navigator.mediaDevices.enumerateDevices();
+
+console.log(devices);
