@@ -5,7 +5,6 @@ import os
 import numpy as np
 import cv2
 
-all_clients = []
 segements = [
         [],
         [],
@@ -16,9 +15,9 @@ segements = [
         []
     ]
 
-async def send_sound_info(segment_index: str):
-    for client in all_clients:
-        await client.send(segment_index)
+
+async def send_sound_info(segment_index: str, client):
+    await client.send(segment_index)
 
 
 def set_segments(segement_array: str):
@@ -40,7 +39,7 @@ def get_segments():
 
 
 
-async def main():
+async def main(client):
     #opencv bereich
     cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
 
@@ -100,7 +99,7 @@ async def main():
 
 
 
-    while cap.isOpened():
+    while True:
         #Capture video frame by frame
         ret, frame = cap.read()
 
@@ -207,18 +206,18 @@ async def main():
         cymbal_masked = cv2.bitwise_and(frame, frame, mask=masks[6])
         masked = cv2.bitwise_and(frame, frame, mask=segment_mask)
 
-
+        #SENDEBEREICH
 
         if np.count_nonzero(kick_masked[np.amin(coordinates[0]):np.amax(coordinates[0])]) > 0 and inside_kick == False:
             print("IN KICK BEREICH")
-            await send_sound_info(str(0))
+            await send_sound_info(str(0), client)
             inside_kick = True
         elif np.count_nonzero(kick_masked[np.amin(coordinates[0]):np.amax(coordinates[0])]) <= 1:
             inside_kick = False
 
         if np.count_nonzero(leftTom_masked[np.amin(coordinates[1]):np.amax(coordinates[1])]) > 0 and inside_leftTom == False:
             print("IN leftTom BEREICH")
-            await send_sound_info(str(1))
+            await send_sound_info(str(1), client)
             inside_leftTom = True
         elif np.count_nonzero(leftTom_masked[np.amin(coordinates[1]):np.amax(coordinates[1])]) <= 1:
             inside_leftTom = False
@@ -226,20 +225,20 @@ async def main():
         if np.count_nonzero(rightTom_masked[np.amin(coordinates[2]):np.amax(coordinates[2])]) > 0 and inside_rightTom == False :
             print("IN rightTOm BEREICH")
             inside_rightTom = True
-            await send_sound_info(str(2))
+            await send_sound_info(str(2), client)
         elif np.count_nonzero(rightTom_masked[np.amin(coordinates[2]):np.amax(coordinates[2])]) <= 1:
             inside_rightTom = False
 
         if np.count_nonzero(snare_masked[np.amin(coordinates[3]):np.amax(coordinates[3])]) > 0 and inside_snare == False:
             print("IN snare BEREICH")
-            await send_sound_info(str(3))
+            await send_sound_info(str(3), client)
             inside_snare = True
         elif np.count_nonzero(snare_masked[np.amin(coordinates[3]):np.amax(coordinates[3])]) <= 1:
             inside_snare = False
 
         if np.count_nonzero(hihat_masked[np.amin(coordinates[4]):np.amax(coordinates[4])]) > 0 and inside_hihat == False:
             print("IN hihat BEREICH")
-            await send_sound_info(str(4))
+            await send_sound_info(str(4), client)
             inside_hihat = True
         elif np.count_nonzero(hihat_masked[np.amin(coordinates[4]):np.amax(coordinates[4])]) <= 1:
             inside_hihat = False
@@ -247,21 +246,19 @@ async def main():
         if np.count_nonzero(floorTom_masked[np.amin(coordinates[5]):np.amax(coordinates[5])]) > 0 and inside_floorTom == False:
             print("IN floortom BEREICH")
             inside_floorTom = True
-            await send_sound_info(str(5))
+            await send_sound_info(str(5), client)
         elif np.count_nonzero(floorTom_masked[np.amin(coordinates[5]):np.amax(coordinates[5])]) <= 1:
             inside_floorTom = False
 
         if np.count_nonzero(cymbal_masked[np.amin(coordinates[6]):np.amax(coordinates[6])]) > 0 and inside_cymbal == False:
             print("IN cymbal BEREICH")
             inside_cymbal = True
-            await send_sound_info(str(6))
+            await send_sound_info(str(6), client)
         elif np.count_nonzero(cymbal_masked[np.amin(coordinates[6]):np.amax(coordinates[6])]) <= 1:
             inside_cymbal = False
 
 
         # frame[np.amin(coordinates[6]):np.amax(coordinates[6])] = [255, 255, 255]
-
-
 
         # cv2.imshow("masked image", masked)
         cv2.imshow("frame", frame)
@@ -277,7 +274,6 @@ async def main():
         #     print(np.sum(frame[points[0][1]:points[-1][1], points[0][0]:points[-1][0]]))
 
 
-
         #anzeigen des frames
         # cv2.imshow('Output_red', mask_red)
         # cv2.imshow('Output_green', mask_green)
@@ -287,34 +283,32 @@ async def main():
         # cv2.imshow("Segment_mask", segment_mask)
 
         if cv2.waitKey(30) != -1:
-            break
+            break 
 
-    cv2.destroyAllWindows()
+        
+
     cap.release()
+        
+    cv2.destroyAllWindows()
 
 async def new_client_connected(client_socket, path):
     print("New Client connected")
-    all_clients.append(client_socket)
-
     
     new_points = await client_socket.recv()
     print("Client sent:", new_points)
     # await send_sound_info(str(4))
     set_segments(new_points)
-        
-    await main()          
+    
 
-async def start_server():
-    print("Server started")
-    await websockets.serve(new_client_connected, "localhost", 12345)
+    await main(client= client_socket)
 
 async def server_main():
     print("Server started")
     async with websockets.serve(new_client_connected, "localhost", 12345):
         await asyncio.Future()  # run forever
 
-if __name__ == '__main__':
+
     # event_loop = asyncio.get_event_loop()
     # event_loop.run_until_complete(start_server())
     # event_loop.run_forever()
-    asyncio.run(server_main())
+asyncio.run(server_main())
