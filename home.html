@@ -26,60 +26,68 @@
 
                 <div class="navEntry" id="drumSetsNav">
                     <h3>Drumsets:</h3>
-                    <select>
-                        <option>Classic</option>
-                        <option>Jazz</option>
-                        <option>Synth</option>
+                    <select id="drumSets">
+                        <option value="0">Classic</option>
+                        <option value="1">Jazz</option>
+                        <option value="2">Synth</option>
                     </select>
                 </div>
-                <div class="navEntry" id="cymbalNav">
-                    <h3>Cymbal:</h3>
-                    <select>
-                        <option>Classic</option>
-                        <option>Jazz</option>
-                        <option>Synth</option>
-                    </select>
-                </div>
-                <div class="navEntry" id="floorTomNav">
-                    <h3>Floor Tom:</h3>
-                    <select>
-                        <option>Classic</option>
-                        <option>Jazz</option>
-                        <option>Synth</option>
-                    </select>
-                </div>
-                <div class="navEntry" id="hihatNav">
-                    <h3>Hi-Hat:</h3>
-                    <select>
-                        <option>Classic</option>
-                        <option>Jazz</option>
-                        <option>Synth</option>
-                    </select>
-                </div>
+
                 <div class="navEntry" id="kickNav">
                     <h3>Kick:</h3>
-                    <select>
-                        <option>Classic</option>
-                        <option>Jazz</option>
-                        <option>Synth</option>
+                    <select id="kick">
+                        <option value="0">Classic</option>
+                        <option value="1">Jazz</option>
+                        <option value="2">Synth</option>
                     </select>
                 </div>
-                <div class="navEntry" id="snare">
-                    <h3>Snare:</h3>
-                    <select>
-                        <option>Classic</option>
-                        <option>Jazz</option>
-                        <option>Synth</option>
-                    </select>
-                </div>
-                <div class="navEntry" id="toms">
+
+                <div class="navEntry" id="tomsNav">
                     <h3>Toms:</h3>
-                    <select>
-                        <option>Classic</option>
-                        <option>Jazz</option>
-                        <option>Synth</option>
+                    <select id="toms">
+                        <option value="0">Classic</option>
+                        <option value="1">Jazz</option>
+                        <option value="2">Synth</option>
                     </select>
                 </div>
+
+                <div class="navEntry" id="snareNav">
+                    <h3>Snare:</h3>
+                    <select id="snare">
+                        <option value="0">Classic</option>
+                        <option value="1">Jazz</option>
+                        <option value="2">Synth</option>
+                    </select>
+                </div>
+
+                <div class="navEntry" id="hihatNav">
+                    <h3>Hi-Hat:</h3>
+                    <select id="hihat">
+                        <option value="0">Classic</option>
+                        <option value="1">Jazz</option>
+                        <option value="2">Synth</option>
+                    </select>
+                </div>
+
+                <div class="navEntry" id="floorTomNav">
+                    <h3>Floor Tom:</h3>
+                    <select id="floorTom">
+                        <option value="0">Classic</option>
+                        <option value="1">Jazz</option>
+                        <option value="2">Synth</option>
+                    </select>
+                </div>
+
+                <div class="navEntry" id="cymbalNav">
+                    <h3>Cymbal:</h3>
+                    <select id="cymbal">
+                        <option value="0">Classic</option>
+                        <option value="1">Jazz</option>
+                        <option value="2">Synth</option>
+                    </select>
+                </div>
+             
+                
             </div>
 
 
@@ -189,6 +197,8 @@
 
     </script>
     <script type="text/javascript" src="websocket_client.js"></script>
+
+    <script type="text/javascript" src="audiocontroller.js"></script>
 
     <script type="text/javascript" src="camera.js"></script>
 

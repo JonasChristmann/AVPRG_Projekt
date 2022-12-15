@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function(){
         // });
 
         websocketClient.onmessage = (message)=>{
-            console.log(message.data)
+            console.log(message.data);
+            playSound(message.data);
         }
     };
 
