@@ -41,7 +41,7 @@ def get_segments():
 
 async def main(client):
     #opencv bereich
-    cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(2, cv2.CAP_DSHOW)
 
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
@@ -57,18 +57,18 @@ async def main(client):
     def do_nothing():
         return
 
-    # cv2.namedWindow("Output_red")
-    # cv2.namedWindow("Output_green")
-    # cv2.namedWindow("Output_blue")
+    cv2.namedWindow("Output_red")
+    cv2.namedWindow("Output_green")
+    cv2.namedWindow("Output_blue")
 
-    # cv2.createTrackbar("Threshold", "Output_red",0,255,do_nothing)
-    # cv2.setTrackbarPos("Threshold", "Output_red", 25)
+    cv2.createTrackbar("Threshold", "Output_red",0,255,do_nothing)
+    cv2.setTrackbarPos("Threshold", "Output_red", 25)
 
-    # cv2.createTrackbar("Threshold", "Output_green",0,255,do_nothing)
-    # cv2.setTrackbarPos("Threshold", "Output_green", 67)
+    cv2.createTrackbar("Threshold", "Output_green",0,255,do_nothing)
+    cv2.setTrackbarPos("Threshold", "Output_green", 163)
 
-    # cv2.createTrackbar("Threshold", "Output_blue",0,255,do_nothing)
-    # cv2.setTrackbarPos("Threshold", "Output_blue", 189)
+    cv2.createTrackbar("Threshold", "Output_blue",0,255,do_nothing)
+    cv2.setTrackbarPos("Threshold", "Output_blue", 19)
 
     cxArr, cyArr, oldCxArr, oldCyArr = [0,0], [0,0], [0,0], [0,0]
 
@@ -125,14 +125,14 @@ async def main(client):
         # mask_grey = 255 - mask_grey
         # cv2.imshow("test", mask_grey)
 
-        # threshold_red = cv2.getTrackbarPos("Threshold", "Output_red")
-        # threshold_green = cv2.getTrackbarPos("Threshold", "Output_green")
-        # threshold_blue = cv2.getTrackbarPos("Threshold", "Output_blue")
+        threshold_red = cv2.getTrackbarPos("Threshold", "Output_red")
+        threshold_green = cv2.getTrackbarPos("Threshold", "Output_green")
+        threshold_blue = cv2.getTrackbarPos("Threshold", "Output_blue")
 
 
-        threshold_red = 25
-        threshold_green = 67
-        threshold_blue = 189
+        # threshold_red = 25
+        # threshold_green = 67
+        # threshold_blue = 189
 
 
         lower_boundary_red = 0 - threshold_red
@@ -307,8 +307,9 @@ async def server_main():
     async with websockets.serve(new_client_connected, "localhost", 12345):
         await asyncio.Future()  # run forever
 
+if __name__ == '__main__':
 
     # event_loop = asyncio.get_event_loop()
     # event_loop.run_until_complete(start_server())
     # event_loop.run_forever()
-asyncio.run(server_main())
+    asyncio.run(server_main())
