@@ -1,0 +1,22 @@
+{
+  "name": "avprg_projekt",
+  "version": "1.0.0",
+  "description": "DrumAir, playing Drums without drums",
+  "author": "Jonas Christmann, Tobias Behn",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonasChristmann/AVPRG_Projekt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JonasChristmann/AVPRG_Projekt/issues"
+  },
+  "homepage": "https://github.com/JonasChristmann/AVPRG_Projekt#readme",
+  "scripts": {
+    "dev": "serve ./src/"
+  },
+  "devDependencies": {
+    "serve": "^14.1.2"
+  }
+}
